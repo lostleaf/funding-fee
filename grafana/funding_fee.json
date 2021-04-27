@@ -1,0 +1,461 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 2,
+  "iteration": 1619496409536,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "crypto_db",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 5,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.6",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "queryText": "\n    SELECT CAST(strftime('%s', 'now', '-1 minute') as INTEGER) as time, 4 as value\n    WHERE time >= 1234 and time < 134567\n  ",
+          "queryType": "table",
+          "rawQueryText": "SELECT funding_time, rate AS okex\nFROM funding_fee_rate\nWHERE\n  symbol='$symbol'\nAND\n  exchange='okex'",
+          "refId": "A",
+          "timeColumns": [
+            "funding_time"
+          ]
+        },
+        {
+          "queryText": "\n    SELECT CAST(strftime('%s', 'now', '-1 minute') as INTEGER) as time, 4 as value\n    WHERE time >= 1234 and time < 134567\n  ",
+          "queryType": "table",
+          "rawQueryText": "SELECT funding_time, rate AS huobi\nFROM funding_fee_rate\nWHERE\n  symbol='$symbol'\nAND\n  exchange='huobi'",
+          "refId": "B",
+          "timeColumns": [
+            "funding_time"
+          ]
+        },
+        {
+          "queryText": "\n    SELECT CAST(strftime('%s', 'now', '-1 minute') as INTEGER) as time, 4 as value\n    WHERE time >= 1234 and time < 134567\n  ",
+          "queryType": "table",
+          "rawQueryText": "SELECT funding_time, rate AS binance\nFROM funding_fee_rate\nWHERE\n  symbol='$symbol'\nAND\n  exchange='binance'",
+          "refId": "C",
+          "timeColumns": [
+            "funding_time"
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "历史资金费率",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": "crypto_db",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": true
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/annual.*/"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-red",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": -0.15
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": -0.0001
+                    },
+                    {
+                      "color": "super-light-green",
+                      "value": 0.0001
+                    },
+                    {
+                      "color": "semi-dark-green",
+                      "value": 0.15
+                    },
+                    {
+                      "color": "dark-green",
+                      "value": 0.5
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "funding_time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 245
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 21,
+        "w": 24,
+        "x": 0,
+        "y": 12
+      },
+      "id": 2,
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "annual"
+          }
+        ]
+      },
+      "pluginVersion": "7.3.6",
+      "targets": [
+        {
+          "queryText": "\n    SELECT CAST(strftime('%s', 'now', '-1 minute') as INTEGER) as time, 4 as value\n    WHERE time >= 1234 and time < 134567\n  ",
+          "queryType": "table",
+          "rawQueryText": "SELECT *\nFROM funding_fee_stat\nWHERE type = 'Coin'",
+          "refId": "A",
+          "timeColumns": [
+            "funding_time"
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "币本位永续费率",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "exchange",
+                "symbol",
+                "funding_time",
+                "rate",
+                "annual",
+                "avg_3d",
+                "annual_3d",
+                "avg_7d",
+                "annual_7d"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": "crypto_db",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null,
+            "filterable": true
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/annual.*/"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-background"
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-red",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": -0.15
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": -0.0001
+                    },
+                    {
+                      "color": "super-light-green",
+                      "value": 0.0001
+                    },
+                    {
+                      "color": "semi-dark-green",
+                      "value": 0.15
+                    },
+                    {
+                      "color": "dark-green",
+                      "value": 0.5
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 21,
+        "w": 24,
+        "x": 0,
+        "y": 33
+      },
+      "id": 3,
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "annual"
+          }
+        ]
+      },
+      "pluginVersion": "7.3.6",
+      "targets": [
+        {
+          "queryText": "\n    SELECT CAST(strftime('%s', 'now', '-1 minute') as INTEGER) as time, 4 as value\n    WHERE time >= 1234 and time < 134567\n  ",
+          "queryType": "table",
+          "rawQueryText": "SELECT *\nFROM funding_fee_stat\nWHERE type = 'USDT' ",
+          "refId": "A",
+          "timeColumns": [
+            "funding_time"
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "USDT本位永续费率",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "exchange",
+                "symbol",
+                "funding_time",
+                "rate",
+                "annual",
+                "avg_3d",
+                "annual_3d",
+                "avg_7d",
+                "annual_7d"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "30m",
+  "schemaVersion": 26,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "DOGE-USD",
+          "value": "DOGE-USD"
+        },
+        "datasource": "crypto_db",
+        "definition": "SELECT distinct symbol FROM funding_fee_rate",
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "symbol",
+        "options": [],
+        "query": "SELECT distinct symbol FROM funding_fee_rate",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-34d",
+    "to": "now+8h"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "funding fee",
+  "uid": "ywLzTewMk",
+  "version": 17
+}
